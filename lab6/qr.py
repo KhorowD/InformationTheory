@@ -350,6 +350,19 @@ def div_into_blocks(binStr, ver):
 def fillByBites(binStr):
 
 	ver = 0
+	
+	# ищем версию
+	for i in range(9):
+		if (const.VERSIES[i]-len(binStr)) >= 0:
+			ver = i
+
+	#Добавляем терминатор
+	for i in range(0,4):
+		if len(binStr) != const.VERSIES[ver]:
+			binStr = binStr + "0"
+		else:
+			return binStr
+	
 	if len(binStr)%8 != 0:
 		while len(binStr)%8 != 0:
 			binStr = binStr + "0"
